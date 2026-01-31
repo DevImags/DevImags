@@ -14,7 +14,7 @@
 
 ---
 
-## 🧰 Tecnologias no meu campo de visão
+## 🧰 Tecnologias - Objetivo
 
 <div style="display: flex; flex-wrap: wrap;">
   <img src="https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white"/>
@@ -33,12 +33,6 @@
 - 📷 Instagram: ---
 - 📹 YouTube: ---
 - 💼 LinkedIn: ---
-
----
-
-## 📈 Estatísticas
-
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=raimundosilva&show_icons=true&theme=radical)
 
 ---
 
