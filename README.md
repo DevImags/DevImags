@@ -29,7 +29,7 @@
 
 ## 📫 Onde me encontrar
 
-- 🌐 Mais em [raimundosilva.dev](https://github.com/DevImags/RaimundoSilva.git)
+- 🌐 Mais em [raimundosilva.dev]([https://github.com/DevImags/RaimundoSilva.git](https://devimags.github.io/DevImags/))
 - 📷 Instagram: ---
 - 📹 YouTube: ---
 - 💼 LinkedIn: ---
