@@ -16,7 +16,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 /* Nav fixo no topo */
 nav.links {
   position: fixed;
