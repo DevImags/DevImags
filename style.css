@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background: url("/img/logo.readme.PNG") no-repeat center center fixed;
+  background: url("https://github.com/DevImags/DevImags/blob/main/img/logo.readme.PNG") no-repeat center center fixed;
   background-size: cover; /* Faz a imagem ocupar toda a tela */
   color: #f5f5f5;
   text-align: center;
