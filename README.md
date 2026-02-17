@@ -1,3 +1,4 @@
+<img src="https://github.com/DevImags/DevImags/blob/main/img/logo.readme.PNG">
 <h1 align="center">Olá! Eu sou Raimundo Silva 👋</h1>
 
 <p align="center">
@@ -24,7 +25,6 @@
   <img src="https://img.shields.io/badge/-Git-F05032?style=flat&logo=git&logoColor=white"/>
   <img src="https://img.shields.io/badge/-GitHub-181717?style=flat&logo=github&logoColor=white"/>
 </div>
-<img src="https://github.com/DevImags/DevImags/blob/main/img/logo.readme.PNG">
 
 ---
 
