@@ -1,15 +1,15 @@
-<table>
+<table style="width:100%;">
   <tr>
-    <!-- Coluna da esquerda: apresentação -->
-    <td>
+    <!-- Coluna da esquerda: texto ocupa 75% -->
+    <td style="width:75%; vertical-align:top;">
       <h1>Olá! Eu sou Raimundo Silva 👋</h1>
       <p>
         Aventurando-se 🚀 pelo mundo da programação 💻 entre códigos e ideias criativas ✨
       </p>
     </td>
-    <!-- Coluna da direita: imagem ocupa todas as linhas -->
-    <td rowspan="4" align="center" valign="top">
-      <img src="https://github.com/DevImags/DevImags/blob/main/img/logo.readme.PNG" style="height:100%; width:auto;" />
+    <!-- Coluna da direita: imagem ocupa 25% -->
+    <td style="width:25%; text-align:center;" rowspan="4">
+      <img src="https://github.com/DevImags/DevImags/blob/main/img/logo.readme.PNG" style="width:100%; height:auto;" />
     </td>
   </tr>
 
