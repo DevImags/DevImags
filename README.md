@@ -1,17 +1,24 @@
-<img src="https://github.com/DevImags/DevImags/blob/main/img/logo.readme.PNG">
-<h1 align="center">Olá! Eu sou Raimundo Silva 👋</h1>
-
-<p align="center">
-  Aventurando-se 🚀 pelo mundo da programação 💻 entre códigos e ideias criativas ✨
-</p>
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/DevImags/DevImags/blob/main/img/logo.readme.PNG" width="250px" />
+    </td>
+    <td>
+      <h1>Olá! Eu sou Raimundo Silva 👋</h1>
+      <p>
+        Aventurando-se 🚀 pelo mundo da programação 💻 entre códigos e ideias criativas ✨
+      </p>
+    </td>
+  </tr>
+</table>
 
 ---
 
 ## 💻 Sobre mim
 
-- 🎯 Focado em aprender e criar soluções web
-- 📚 Estudando HTML, CSS, JavaScript e muito mais
-- 🌱 Explorando tecnologias e boas práticas
+- 🎯 Focado em aprender e criar soluções web  
+- 📚 Estudando HTML, CSS, JavaScript e muito mais  
+- 🌱 Explorando tecnologias e boas práticas  
 
 ---
 
@@ -30,10 +37,9 @@
 
 ## 📫 Onde me encontrar
 
-- 🌐 Mais em [raimundo.silva](https://devimags.github.io/DevImags/)
-- 📷 Instagram: ---
-- 📹 YouTube: ---
-- 💼 LinkedIn: ---
+- 🌐 Mais em [raimundo.silva](https://devimags.github.io/DevImags/)  
+- 📷 Instagram: ---  
+- 📹 YouTube: ---  
+- 💼 LinkedIn: ---  
 
 ---
-
