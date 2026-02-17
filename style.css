@@ -1,39 +1,82 @@
-body {
-  font-family: Arial, sans-serif;
-  background: url("https://github.com/DevImags/DevImags/blob/main/img/logo.readme.PNG") no-repeat center center fixed;
-  background-size: cover; /* Faz a imagem ocupar toda a tela */
-  color: #f5f5f5;
-  text-align: center;
+/* Reset básico */
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
-    header {
-      padding: 40px;
-    }
-    img {
-      border-radius: 50%;
-      width: 120px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      margin: 10px 0;
-    }
-    p {
-      margin: 5px 0;
-    }
-    .links {
-      margin-top: 30px;
-    }
-    .links a {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 20px;
-      background: #1e88e5;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    .links a:hover {
-      background: #1565c0;
-    }
+/* Fundo */
+body {
+  font-family: Arial, sans-serif;
+  background: #000 url("/img/logo.readme.PNG") no-repeat center center fixed;
+  background-size: contain; /* mostra a imagem inteira sem cortar */
+  background-color: #000;   /* preenche espaço vazio com preto */
+  color: #f5f5f5;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Nav fixo no topo */
+nav.links {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  padding: 10px 0;
+  z-index: 10;
+}
+
+nav.links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav.links li {
+  margin: 0 15px;
+}
+
+nav.links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav.links a:hover {
+  color: #1e88e5;
+}
+
+/* Header ocupa espaço entre nav e footer */
+header {
+  margin-top: 80px; /* espaço para não ficar atrás do nav */
+  flex: 1;          /* ocupa o espaço disponível */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* avatar no topo, h1 embaixo */
+  align-items: center;            /* centraliza horizontalmente */
+}
+
+/* Avatar no topo */
+.avatar {
+  border-radius: 50%;
+  width: 120px;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+/* Título pouco acima do footer */
+h1 {
+  margin-bottom: 20px; /* controla a distância do footer */
+}
+
+/* Footer sempre no rodapé */
+footer {
+  background: rgba(0,0,0,0.7);
+  padding: 10px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
