@@ -1,7 +1,7 @@
 <table>
   <tr>
     <td>
-      <img src="https://github.com/DevImags/DevImags/blob/main/img/logo.readme.PNG" width="250px" />
+      <img src="https://github.com/DevImags/DevImags/blob/main/img/Logo%20da%20Empresa.png" width="250px" />
     </td>
     <td>
       <h1>Olá! Eu sou Raimundo Silva 👋</h1>
