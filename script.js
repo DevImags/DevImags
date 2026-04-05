@@ -1,23 +1,25 @@
-// script.js
-document.addEventListener("DOMContentLoaded", () => {
-  // intercepta cliques nos links
-  document.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", event => {
-      event.preventDefault();
-      const url = link.getAttribute("href");
+function toggleMenu() {
+    const nav = document.getElementById('nav-menu');
+    const btn = document.querySelector('.hamburger');
+    nav.classList.toggle('aberto');
+    btn.classList.toggle('ativo');
+}
 
-      fetch(url)
-        .then(response => {
-          if (!response.ok) {
-            // se não encontrar, redireciona para página de erro
-            window.location.href = "404.html";
-          } else {
-            window.location.href = url;
-          }
-        })
-        .catch(() => {
-          window.location.href = "404.html";
-        });
-    });
-  });
-});
+function ajustarHero() {
+  const header = document.querySelector('header');
+  const hr = document.querySelector('hr');
+  const container = document.querySelector('.hero-container');
+  const alturaHeader = header.offsetHeight + hr.offsetHeight;
+  const altura = `calc(100dvh - ${alturaHeader}px)`;
+
+  if (window.innerWidth > 1024) {
+    container.style.height = altura;
+    container.style.maxHeight = altura;
+  } else {
+    container.style.height = 'auto';
+    container.style.maxHeight = 'none';
+  }
+}
+
+ajustarHero();
+window.addEventListener('resize', ajustarHero);

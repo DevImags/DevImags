@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cores Presenta na Logo*/
+/* Verde Claro: #12CC59*/
+/* Presente nos quadriculados e "Imags" */
+/* Preto: #04090D*/
+/* Presente no "D" de fundo do simbolo da logo */
+/* Verde Escuro: #0B1215*/
+/* Presente no plano de fundo da logo */
+/* Branco: #FFFFFF*/
+/* Presente na "Dev" */
+/* Cinza: #BFBFBF*/
+/* Presente na "MARKETING DIGITAL" */
+
+:root {
+
+  /* Background */
+  --bg: #04090D;
+  --bg1: #0B1215;
+  --bg2: #BFBFBF85;
+  --bg3: #12CC59;
+  --bg4: #12CC5933;
+  --bg5: #FFFFFF;
+
+  /* Cores */
+  --cr: #FFFFFF;
+  --cr1: #BFBFBF;
+  --cr2: #04090d;
+  --cr3: #0B1215;
+  --cr4: #12CC59;
+  --cr5: #12CC5933;
+
+  /* Fontes */
+  --font-main: 'Arial', sans-serif;
+  --font-bold: 'Arial Black', sans-serif;
+
+
+  /* Hover */
+  --hover: #12CC59;
+  --hover2: #12CC5933;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg1);
+  width: 100vw;
+  height: 100vh;
+  color: var(--cr);
+  padding: 0 5px 5px 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === MAIN === */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}

@@ -37,7 +37,7 @@
 
 ## 📫 Onde me encontrar
 
-- 🌐 Mais em [raimundo.silva](https://devimags.com.br/)  
+- 🌐 Mais em [DevImags](https://devimags.com.br/)  
 - 📷 Instagram: ---  
 - 📹 YouTube: ---  
 - 💼 LinkedIn: ---  

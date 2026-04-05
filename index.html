@@ -1,47 +1,175 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="p:domain_verify" content="5839a0788f6edf89d354c63e48cd98df"/>
-  
-  <title>DevImags - Otimização de Marketing Local</title>
+  <meta name="p:domain_verify" content="5839a0788f6edf89d354c63e48cd98df" />
+  <meta name="description"
+    content="Criamos e otimizamos perfis no Google Maps para pequenos empreendedores. mais visibilidade local, mais clientes, mais resultados. Fale com a DevImags!" />
+  <meta name="keywords"
+    content="Google Maps, perfil Google Meu Negócio, marketing local, visibilidade local, cadastro Google Maps" />
 
+  <meta property="og:title" content="DevImags | Sua Empresa no Google Maps" />
+  <meta property="og:description" content="Criamos e otimizamos perfis no Google Maps. Mais clientes na sua região." />
+  <meta property="og:image" content="/img-devimags/png/capa-v2.png" />
+  <meta property="og:url" content="https://www.devimags.com.br" />
+  <meta property="og:type" content="website" />
+
+
+  <title>DevImags | Sua Empresa no Google Maps</title>
+  <!-- Navegadores modernos (Chrome, Firefox, Edge) -->
+  <link rel="icon" type="image/svg+xml" href="/img-sigla/favicon.svg">
+  <!-- Fallback para navegadores antigos (.ico) -->
+  <link rel="shortcut icon" href="/img-sigla/favicon.ico">
+  <link rel="icon" type="image/x-icon" sizes="48x48" href="/img-sigla/favicon-48.ico">
+  <link rel="icon" type="image/x-icon" sizes="32x32" href="/img-sigla/favicon-32.ico">
+  <!-- PNG -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/img-sigla/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/img-sigla/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img-sigla/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/img-sigla/favicon-512x512.png">
+  <!-- WebP (navegadores que suportam) -->
+  <link rel="icon" type="image/webp" href="/img-sigla/favicon-48.webp">
+  <!-- Apple (iOS - ao salvar na tela inicial) -->
+  <link rel="apple-touch-icon" href="/img-sigla/apple-touch-icon.png">
+  <!-- PWA / Android -->
+  <meta name="theme-color" content="#0B1215">
   <!--  -->
-  <link rel="apple-touch-icon" sizes="180x180" href="img/logo-apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/logo-favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/logo-favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <!--  -->
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "DevImags",
-    "url": "https://devimags.com.br/",
-    "logo": "https://devimags.com.br/img/favicon.png"
-  }
-  </script>
-
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
   <header>
-    <nav class="links">
+    <div class="logo-header">
+      <img class="logo-img" src="img-devimags/Imagem1.svg" alt="logo empresa">
+      <div class="logo-texto">
+        <div>
+          <span class="dev">Dev</span><span class="imags">Imags</span>
+        </div>
+        <p class="slogan">MARKETING DIGITAL</p>
+      </div>
+    </div>
+
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="nav-menu">
       <ul>
-        <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home "><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a></li>
-        <li><a href="#">Projetos</a></li>
-        <li><a href="https://wa.me/5515991699941" target="_blank" rel="noopener">WhatsApp</a></li>
-        <li><a href="https://br.pinterest.com/devimags/" target="_blank" rel="noopener">Pinterest</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#solucoes">Soluções</a></li>
+        <li><a href="#cases">Cases</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="https://wa.me/5515991699941" target="_blank" class="menu-cta">WhatsApp</a></li>
       </ul>
     </nav>
-    <h3>DevImags - Otimização de Marketing Local</h3>
-    <p>@devimagsof</p>
+
+    <div class="header-cta">
+      <a target="_blank" href="https://wa.me/5515991699941"><img src="img-redsocial/WhatsApp/Android_App_Icon_2026.png"
+          alt="WhatsApp">Começar Agora</a>
+    </div>
   </header>
 
-  <footer>
-    <p>&copy; 2026 DevImags. Todos os direitos reservados.</p>
-  </footer>
+
+  <main>
+
+    <!-- ==== HERO -->
+     <div class="hero-container">
+    <section class="hero" id="home">
+      <div class="hero-left">
+        <div class="hero-grid-bg"></div>
+        <h1>Seu negócio<br>no mapa.<br><span>Do jeito certo.</span></h1>
+        <div class="scroll-indicator">
+          <span class="scroll-label">ROLE PARA VER MAIS</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M6 9L12 15L18 9" stroke="#12CC59" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="opacity:0.4; margin-top:-10px">
+            <path d="M6 9L12 15L18 9" stroke="#12CC59" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-desc">
+          <p>
+            Criamos e otimizamos perfis no <strong>Google Maps</strong> para pequenos empreendedores. Mais visibilidade
+            local, mais clientes chegando até você - sem complicação.
+          </p>
+        </div>
+
+        <div class="hero-ctas">
+          <a href="https://wa.me/5515991699941" target="_blank" class="btn-hero-wpp">
+            <img class="hero-wpp" src="img-redsocial/WhatsApp/WhatsApp_White.png" alt="WhatsApp">
+            Quero aparecer no Google
+          </a>
+          <a href="#servicos" class="btn-hero-blog">
+            Como funciona &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+    <section class="servicos" id="servicos">
+
+      <div class="servicos-header">
+        <div class="servicos-badge">SERVIÇOS</div>
+        <h2 class="servicos-titulo">O que a <span>DevImags</span> faz por você</h2>
+      </div>
+
+      <div class="servicos-grid">
+
+        <div class="card-servico">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#12CC59" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+              <circle cx="12" cy="9" r="2.5" />
+            </svg>
+          </div>
+          <h3 class="card-titulo">Criação no<br><span>Google Meu Negócio</span></h3>
+          <p class="card-desc">Colocamos sua empresa no Google maps do zero - com todas as informações corretas para seus clientes te encontrarem.</p>
+          <ul class="card-lista">
+            <li>Cadastro completo do perfil</li>
+            <li>Fotos e descrição profissional</li>
+            <li>Categoria e horários configurados</li>
+            <li>Verificação da empresa</li>
+          </ul>
+          <a href="https://wa.me/5515991699941" target="_blank" class="card-cta">Quero criar meu perfil &rarr;</a>
+        </div>
+
+        <div class="card-servico">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#12CC59" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+              <polyline points="17 6 23 6 23 12" />
+            </svg>
+          </div>
+          <h3 class="card-titulo">Otimização do<br><span>Perfil Existente</span></h3>
+          <p class="card-desc">Já tem perfil no Google mas não aparece nas buscas? A gente otimiza tudo para você aparecer na frente da concorrência.</p>
+          <ul class="card-lista">
+            <li>Análise completa do perfil atual</li>
+            <li>Otimização de palavras-chave</li>
+            <li>Atualização de fotos e informações</li>
+            <li>Estratégia para mais avaliações</li>
+          </ul>
+          <a href="https://wa.me/5515991699941" target="_blank" class="card-cta">Quero otimizar meu perfil &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <script src="script.js"></script>
+
 </body>
+
 </html>

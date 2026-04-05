@@ -1,0 +1,138 @@
+/* ==== SERVIÇOS ==== */
+.servicos {
+    padding: 48px 0;
+    margin-top: 0;
+}
+
+.servicos-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.servicos-badge {
+    display: inline-block;
+    background: var(--hover2);
+    color: var(--hover);
+    font-size: 11px;
+    letter-spacing: 4px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--hover);
+    margin-bottom: 16px;
+    font-family: var(--font-main);
+}
+
+.servicos-titulo {
+    font-family: var(--font-bold);
+    font-size: clamp(22px, 3vw, 36px);
+    color: var(--cr);
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.servicos-titulo span {
+    color: var(--hover);
+}
+
+.servicos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* ==== CARD ==== */
+.card-servico {
+    background: var(--bg);
+    border: 1px solid var(--bg2);
+    border-radius: 20px;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color 0.3s;
+}
+
+.card-servico:hover {
+    border-color: var(--hover);
+}
+
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--hover2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.card-titulo {
+    font-family: var(--font-bold);
+    font-size: 20px;
+    color: var(--cr);
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.card-titulo span {
+    color: var(--hover);
+}
+
+.card-desc {
+    font-size: 14px;
+    color: var(--cr1);
+    line-height: 1.7;
+    flex: 1;
+}
+
+.card-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+}
+
+.card-lista li {
+    font-size: 13px;
+    color: var(--cr1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-lista li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--hover);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.card-cta {
+    background: var(--hover2);
+    color: var(--hover);
+    font-family: var(--font-bold);
+    font-size: 14px;
+    font-weight: 900;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--hover);
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.3s, color 0.3s;
+    margin-top: 8px;
+}
+
+.card-cta:hover {
+    background: var(--hover);
+    color: var(--cr2)
+}
