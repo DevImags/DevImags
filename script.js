@@ -7,9 +7,8 @@ function toggleMenu() {
 
 function ajustarHero() {
   const header = document.querySelector('header');
-  const hr = document.querySelector('hr');
   const container = document.querySelector('.hero-container');
-  const alturaHeader = header.offsetHeight + hr.offsetHeight;
+  const alturaHeader = header.offsetHeight;  /* remove o hr */
   const altura = `calc(100dvh - ${alturaHeader}px)`;
 
   if (window.innerWidth > 1024) {
