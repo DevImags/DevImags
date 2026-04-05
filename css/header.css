@@ -10,6 +10,9 @@ header {
   background: var(--bg1);
   box-shadow: 0 1px 0 var(--hover); /* linha verde embaixo */
 }
+#home {
+  scroll-margin-top: 100px; /* mesma altura do header */
+}
 
 /* ==== LOGO ==== */
 .logo-header {
