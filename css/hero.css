@@ -1,8 +1,8 @@
 /* ==== HERO ==== */
 .hero-container {
-  height: calc(100dvh - 112px);
+  height: calc(100dvh - var(--header-height));
   overflow: hidden;
-  max-height: calc(100dvh - 112px);
+  max-height: calc(100dvh - var(--header-height));
 }
 .hero {
   display: grid;
