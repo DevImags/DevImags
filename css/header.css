@@ -62,7 +62,20 @@ header {
 #nav-menu a.ativo {
   color: var(--hover);
   background: var(--hover2);
+  border-radius: 5px;
+  transition: all 0.9s ease;
+  border-left: 2px solid;
+
 }
+
+#nav-menu a {
+  position: relative;
+}
+
+#nav-menu a.ativo::after {
+  width: 100%;
+}
+
 
 nav {
   background: var(--bg);
