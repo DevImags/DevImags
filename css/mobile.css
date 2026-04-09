@@ -91,4 +91,21 @@
     grid-template-columns: 1fr;
   }
 
+  /* SOLUÇÕES */
+  .resultados-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* PROCESSO */
+.processo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 48px;
+    position: relative;
+}
+
+
 }
