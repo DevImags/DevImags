@@ -1,0 +1,126 @@
+/* ============================================================
+   RESPONSIVIDADE UNIFICADA - DEVIMAGS
+   ============================================================ */
+
+/* TABLET (ATÉ 1024PX) */
+@media (max-width: 1024px) {
+    /* HEADER */
+    header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .hamburger { display: flex; }
+
+    nav {
+        display: none;
+        width: 100%;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    nav.aberto {
+        display: flex;
+        width: 100%;
+        min-width: 280px;
+        margin: 0 auto;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 5px;
+    }
+
+    nav ul li { width: 100%; text-align: center; }
+
+    nav ul li a {
+        display: block;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .logo-img { height: 60px; }
+    .dev, .imags { font-size: 30px; }
+    .header-cta { display: none; }
+
+    .menu-cta {
+        color: var(--hover) !important;
+        font-weight: bold;
+        border: 1px solid var(--hover2);
+        display: block !important;
+    }
+
+    /* HERO */
+    .hero-container, .hero {
+        height: auto;
+        max-height: none;
+    }
+
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: flex; }
+    .hero-left { min-height: 260px; padding: 40px 28px; }
+    .hero-ctas { gap: 10px; }
+
+    .btn-hero-wpp, .btn-hero-blog {
+        font-size: 13px;
+        padding: 18px 12px;
+    }
+
+    /* GRIDS (SERVICOS, SOLUÇÕES E PROCESSO) */
+    .servicos-grid, .resultados-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .processo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 48px;
+    }
+}
+
+/* TABLET PAISAGEM (OTIMIZAÇÃO) */
+@media (max-width: 1024px) and (orientation: landscape) {
+    nav ul {
+        flex-direction: row;
+        justify-content: center;
+    }
+    nav ul li { width: auto; }
+    .resultados-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* MOBILE (ATÉ 480PX) */
+@media (max-width: 480px) {
+    header { padding: 10px 15px; gap: 8px; }
+    .logo-img { height: 45px; }
+    .dev, .imags { font-size: 22px; }
+    .slogan { font-size: 9px; letter-spacing: 3px; }
+
+    nav.aberto { background: var(--bg); }
+    nav ul li a { font-size: 18px; padding: 12px 10px; }
+
+    .hero { padding: 16px 0 24px; gap: 24px; }
+    .hero-left, .hero-desc { border-radius: 16px; }
+    .hero-left { min-height: 200px; padding: 32px 20px; }
+    .hero-desc { padding: 28px 20px; min-height: 180px; }
+
+    .hero-ctas { 
+        grid-template-columns: 1fr; 
+        gap: 12px; 
+    }
+
+    .btn-hero-wpp, .btn-hero-blog {
+        border-radius: 14px;
+        padding: 18px 20px;
+        font-size: 14px;
+    }
+
+    .servicos { padding: 24px 0; }
+    
+    /* Voltando para 2 colunas no mobile se os cards forem pequenos */
+    .resultados-grid { grid-template-columns: 1fr 1fr; }
+}

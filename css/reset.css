@@ -4,7 +4,7 @@
   padding: 0;
 }
 
-/* Cores Presenta na Logo*/
+/* Cores Presente na Logo*/
 /* Verde Claro: #12CC59*/
 /* Presente nos quadriculados e "Imags" */
 /* Preto: #04090D*/
@@ -69,6 +69,11 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+footer {
+  text-align: center;
+  padding: 40px;;
 }
 
 section {
