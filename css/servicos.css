@@ -1,12 +1,12 @@
 /* ==== SERVIÇOS ==== */
 .servicos {
-    padding: 40px 0;
+    padding: 15px 0;
     margin-top: 0;
 }
 
 .servicos-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .servicos-badge {
@@ -18,7 +18,7 @@
     padding: 6px 16px;
     border-radius: 20px;
     border: 1px solid var(--hover);
-    margin-bottom: 16px;
+    margin-bottom: 5px;
     font-family: var(--font-main);
 }
 
@@ -37,7 +37,7 @@
 .servicos-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 5px;
 }
 
 /* ==== CARD ==== */
@@ -45,7 +45,7 @@
     background: var(--bg);
     border: 1px solid var(--bg2);
     border-radius: 20px;
-    padding: 36px 28px;
+    padding: 20px 20px;
     display: flex;
     flex-direction: column;
     gap: 16px;
