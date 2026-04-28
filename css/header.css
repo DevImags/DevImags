@@ -1,4 +1,4 @@
-/* ==== HEADER ==== */
+/* ==== HEADER PRINCIPAL ==== */
 header {
   display: flex;
   justify-content: space-between;
@@ -8,10 +8,8 @@ header {
   top: 0;
   z-index: 100;
   background: var(--bg1);
-  box-shadow: 0 1px 0 var(--hover); /* linha verde embaixo */
-}
-#home {
-  scroll-margin-top: 100px; /* mesma altura do header */
+  box-shadow: 0 1px 0 var(--hover2);
+  padding: 0 20px;
 }
 
 /* ==== LOGO ==== */
@@ -19,127 +17,98 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 0;
+  text-decoration: none;
 }
 
 .logo-img {
-  height: 80px;
+  height: 60px;
   width: auto;
 }
 
 .logo-texto {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  min-width: 120px;
+  margin-left: 10px;
 }
 
-.dev,
-.imags {
-  font-size: 40px;
-  font-weight: bold;
-  font-family: var(--font-bold);
-  line-height: 1;
-}
-
-.dev {
-  color: var(--cr);
-}
-
-.imags {
-  color: var(--hover);
-}
+.dev { color: var(--cr); font-size: 32px; font-weight: bold; font-family: var(--font-bold); line-height: 1; }
+.imags { color: var(--hover); font-size: 32px; font-weight: bold; font-family: var(--font-bold); line-height: 1; }
 
 .slogan {
   font-family: var(--font-main);
-  font-size: 12px;
+  font-size: 10px;
   color: var(--cr1);
-  letter-spacing: 6px;
-  margin-top: 4px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
-/* ==== NAV ==== */
-#nav-menu a.ativo {
-  color: var(--hover);
-  background: var(--hover2);
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  border-left: 2px solid;
-
-}
-
-#nav-menu a {
-  position: relative;
-}
-
-#nav-menu a.ativo::after {
-  width: 100%;
-}
-
-
+/* ==== NAVEGAÇÃO E LINKS ATIVOS ==== */
 nav {
   background: var(--bg);
-  padding: 20px;
+  padding: 10px 20px;
   border-radius: 10px;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   margin: 0;
   padding: 0;
 }
 
+/* Link Normal */
 nav ul li a {
   color: var(--cr1);
   font-family: var(--font-main);
   text-decoration: none;
   font-size: 16px;
-  padding: 8px 10px;
+  padding: 8px 12px;
   border-radius: 5px;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
+  display: inline-block;
+  border-left: 2px solid transparent; /* Espaço reservado para a borda ativa */
 }
 
-nav ul li a:hover {
+/* Link Ativo (Página Atual) */
+nav ul li a.ativo {
+  color: var(--hover) !important;
+  background: var(--hover2) !important;
+  border-left: 2px solid var(--hover) !important;
+  font-weight: bold;
+}
+
+/* Hover apenas em quem NÃO é o ativo */
+nav ul li a:not(.ativo):hover {
   color: var(--hover);
   background: var(--hover2);
 }
 
-.menu-cta {
-  display: none;
-}
-
-
-/* ==== CTA ==== */
+/* ==== BOTÃO CTA LADO DIREITO ==== */
 .header-cta a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
   color: var(--cr1);
   text-decoration: none;
-  font-size: 16px;
-  font-family: var(--font-main);
-  padding: 10px;
-  border-radius: 5px;
-  transition: color 0.3s;
-}
-
-.header-cta a:hover {
-  color: var(--hover);
+  font-size: 14px;
 }
 
 .header-cta img {
   background-color: var(--bg2);
   border-radius: 50%;
-  padding: 5px;
+  padding: 8px;
   width: 40px;
   height: 40px;
+  transition: transform 0.3s;
 }
 
-/* ==== HAMBURGUER ==== */
+.header-cta a:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
 
+/* ==== HAMBURGUER (MOBILE) ==== */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -147,7 +116,6 @@ nav ul li a:hover {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 5px;
 }
 
 .hamburger span {
@@ -155,19 +123,26 @@ nav ul li a:hover {
   width: 25px;
   height: 3px;
   background: var(--cr);
-  border-radius: 3px;
-  transition: transform 0.3s, opacity 0.3s;
+  transition: 0.3s;
 }
 
-/* HAMBURGUER VIRA X QUANDO CLICADO */
-.hamburger.ativo span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
+.hamburger.ativo span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.ativo span:nth-child(2) { opacity: 0; }
+.hamburger.ativo span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-.hamburger.ativo span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.ativo span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+/* ==== MEDIA QUERY MOBILE ==== */
+@media (max-width: 1024px) {
+  .hamburger { display: flex; }
+  #nav-menu {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background: var(--bg1);
+    flex-direction: column;
+    padding: 20px;
+  }
+  #nav-menu.aberto { display: flex; }
+  nav ul { flex-direction: column; }
 }

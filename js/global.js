@@ -15,47 +15,72 @@ function fecharMenu() {
   btn.classList.remove('ativo');
 }
 
-/* ==== LÓGICA DE NAVEGAÇÃO E LINKS ==== */
-const navLinks = document.querySelectorAll('#nav-menu a');
+/* ==== LÓGICA DE DESTAQUE DO MENU ==== */
+document.addEventListener('DOMContentLoaded', () => {
+  const navLinks = document.querySelectorAll('#nav-menu a');
 
-function marcarLinkAtivo() {
-  const path = window.location.pathname.split("/").pop();
-  navLinks.forEach(link => {
-    link.classList.remove('ativo');
-    const href = link.getAttribute('href');
-    if (path === href || (href === "index.html" && (path === "" || path === "index.html"))) {
-      link.classList.add('ativo');
-    }
-  });
-}
+  function marcarLinkAtivo() {
+    // Pega o caminho da URL atual (ex: /servicos/ ou /index.html)
+    const currentPath = window.location.pathname;
 
-navLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    const href = link.getAttribute('href');
-    if (href.startsWith('http') || href.includes('.html')) {
-      fecharMenu();
-      return; 
-    }
-    if (href.startsWith('#')) {
-      const targetId = href.replace('#', '');
-      const targetSection = document.getElementById(targetId);
-      if (targetSection) {
-        fecharMenu();
-      } else {
-        e.preventDefault();
-        window.location.href = "index.html" + href;
+    navLinks.forEach(link => {
+      link.classList.remove('ativo');
+      
+      // Converte o href do link em um caminho absoluto para comparação precisa
+      const linkPath = new URL(link.href).pathname;
+
+      // Se o caminho da URL for igual ao do link
+      // Ou se estivermos na raiz e o link for a index
+      if (currentPath === linkPath || (currentPath === "/" && linkPath.endsWith("index.html"))) {
+        link.classList.add('ativo');
       }
+    });
+
+    // Fallback: Se nenhum link foi marcado (ex: em subpastas sem o 'index.html' na URL)
+    const algumAtivo = document.querySelector('#nav-menu a.ativo');
+    if (!algumAtivo) {
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href').replace('../', '');
+        if (currentPath.includes(href) && href !== "index.html" && href !== "/") {
+          link.classList.add('ativo');
+        }
+      });
     }
+  }
+
+  // Executa ao carregar
+  marcarLinkAtivo();
+
+  // Gerencia cliques em âncoras (#) e fecha menu mobile
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+
+      if (href.startsWith('#')) {
+        const targetId = href.replace('#', '');
+        const targetSection = document.getElementById(targetId);
+
+        if (targetSection) {
+          navLinks.forEach(l => l.classList.remove('ativo'));
+          link.classList.add('ativo');
+          fecharMenu();
+        } else {
+          // Se a âncora não existe na página atual, vai para a home
+          e.preventDefault();
+          window.location.href = (window.location.pathname.includes('/html/') ? '../index.html' : 'index.html') + href;
+        }
+      } else {
+        fecharMenu();
+      }
+    });
   });
 });
 
-// Inicializa
-marcarLinkAtivo();
-
-/* ==== UTILITÁRIOS (ERRO) ==== */
+/* ==== FUNÇÃO DE ERRO ==== */
 function mostraErro(mensagem) {
   const erroAntigo = document.querySelector('.erro-container');
   if (erroAntigo) erroAntigo.remove();
+
   const erroContainer = document.createElement('div');
   erroContainer.className = 'erro-container';
   erroContainer.innerHTML = `
