@@ -146,3 +146,4 @@ nav ul li a:not(.ativo):hover {
   #nav-menu.aberto { display: flex; }
   nav ul { flex-direction: column; }
 }
+
