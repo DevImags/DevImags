@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadro de Operações Agrícola</title>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="../css/controle_tratos.css">
+
+    <link rel="icon" type="image/svg+xml" href="../assets/sigla/favicon.svg">
+    <link rel="shortcut icon" href="../assets/sigla/favicon.ico">
+    <link rel="apple-touch-icon" href="../assets/sigla/apple-touch-icon.png">
+    <link rel="canonical" href="https://devimags.com.br/" />
+</head>
+
+<body>
+
+    <div class="header-card">
+        <h1>🚜 Controle de Operações Agrícolas</h1>
+
+        <div class="ciclo-selector">
+            <button id="btn-cana-planta" class="btn-ciclo active">🌱 Cana Planta</button>
+            <button id="btn-cana-soca" class="btn-ciclo">🚜 Cana Soca</button>
+        </div>
+
+        <div id="drop-zone" onclick="document.getElementById('upload-excel').click();">
+            <span>📁 Carregar Planilha</span>
+            <input type="file" id="upload-excel" accept=".xlsx, .xls" style="display: none;" />
+        </div>
+    </div>
+
+    <div class="kanban-wrapper">
+
+        <aside id="card-filtros" class="sidebar-filtros">
+            <h3 class="sidebar-title">📍 Filtrar Fazendas</h3>
+
+            <div class="sidebar-actions">
+                <button id="btn-marcar-todos" type="button" class="btn-filter">☑️ Marcar Todas</button>
+                <button id="btn-desmarcar-todos" type="button" class="btn-filter">⬜ Limpar</button>
+            </div>
+
+            <div id="lista-propriedades-filtros" class="filter-list">
+                <p class="filter-placeholder">Aguardando planilha...</p>
+            </div>
+        </aside>
+
+        <div class="container">
+            <div class="column">
+                <h2 class="not-planted-title">🌱 Sem Plantio</h2>
+                <div id="col-sem-plantio"></div>
+            </div>
+
+            <div class="column">
+                <h2 id="titulo-pendentes" class="pending-title">⏳ Planejado</h2>
+                <div id="col-pendentes"></div>
+            </div>
+
+            <div class="column">
+                <h2 id="titulo-andamento" class="progress-title">⚙️ O.S. Liberada</h2>
+                <div id="col-andamento"></div>
+            </div>
+
+            <div class="column">
+                <h2 id="titulo-realizadas" class="success-title">✅ Realizadas</h2>
+                <div id="col-realizadas"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../js/controle_tratos.js"></script>
+</body>
+
+</html>
