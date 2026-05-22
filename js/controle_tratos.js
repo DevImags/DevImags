@@ -3,8 +3,8 @@ const dropZone = document.getElementById('drop-zone');
 const fileInput = document.getElementById('upload-excel');
 
 // VARIÁVEIS GLOBAIS DE CONTROLE DOS FILTROS E CICLO
-let dadosOriginaisPlanilha = []; 
-let planilhaWorkbookGlobal = null; 
+let dadosOriginaisPlanilha = [];
+let planilhaWorkbookGlobal = null;
 let propriedadesSelecionadas = new Set();
 let operacoesSelecionadas = new Set(); // Nova variável global para operações
 let cicloSelecionado = "Cana Planta";
@@ -37,7 +37,7 @@ if (fileInput) {
 function formatarDataBR(dataInput) {
     if (!dataInput) return '-';
     let d = new Date(dataInput);
-    if (isNaN(d.getTime())) return dataInput.toString(); 
+    if (isNaN(d.getTime())) return dataInput.toString();
     let dia = d.getDate().toString().padStart(2, '0');
     let mes = (d.getMonth() + 1).toString().padStart(2, '0');
     let ano = d.getFullYear();
@@ -172,9 +172,9 @@ function gerarFiltrosLaterais(dados) {
         const novoBtnDesmarcar = btnDesmarcarTodos.cloneNode(true);
         btnDesmarcarTodos.parentNode.replaceChild(novoBtnDesmarcar, btnDesmarcarTodos);
         novoBtnDesmarcar.addEventListener('click', () => {
-            propriedadesSelecionadas.clear(); 
-            atualizarVisualCheckboxes();      
-            renderizarKanban(dadosOriginaisPlanilha); 
+            propriedadesSelecionadas.clear();
+            atualizarVisualCheckboxes();
+            renderizarKanban(dadosOriginaisPlanilha);
         });
     }
 
@@ -196,7 +196,7 @@ function gerarFiltrosOperacoes(operacoesMapeadas) {
         containerOps.querySelectorAll('.filtro-opcao').forEach(div => {
             const codOp = div.getAttribute('data-op');
             const chk = div.querySelector('.chk-op');
-            
+
             if (operacoesSelecionadas.has(codOp)) {
                 div.classList.add('active');
                 if (chk) chk.checked = true;
@@ -209,9 +209,9 @@ function gerarFiltrosOperacoes(operacoesMapeadas) {
 
     operacoesMapeadas.forEach(op => {
         const divOpcao = document.createElement('div');
-        divOpcao.className = 'filtro-opcao'; 
+        divOpcao.className = 'filtro-opcao';
         divOpcao.setAttribute('data-op', op.cod);
-        
+
         divOpcao.style.display = 'flex';
         divOpcao.style.alignItems = 'center';
         divOpcao.style.width = '100%';
@@ -273,9 +273,9 @@ function gerarFiltrosOperacoes(operacoesMapeadas) {
         const novoBtn = btnDesmarcar.cloneNode(true);
         btnDesmarcar.parentNode.replaceChild(novoBtn, btnDesmarcar);
         novoBtn.addEventListener('click', () => {
-            operacoesSelecionadas.clear(); 
-            atualizarVisualOps();          
-            renderizarKanban(dadosOriginaisPlanilha); 
+            operacoesSelecionadas.clear();
+            atualizarVisualOps();
+            renderizarKanban(dadosOriginaisPlanilha);
         });
     }
 
@@ -340,7 +340,7 @@ function renderizarKanban(dados) {
         operacoesMapeadas.forEach(op => {
             let statusOSStr = (row[`Status da O.S. ${op.cod}`] || row[`Status da O.S.${op.cod}`] || '').toString().trim().toUpperCase();
             let osString = (row[`OS-${op.cod}`] || row[`OS ${op.cod}`] || '').toString().trim();
-            
+
             let temData = false;
             for (let col of op.colsDt) {
                 if (row[col] !== undefined && row[col] !== '' && row[col] !== '-') {
@@ -366,7 +366,7 @@ function renderizarKanban(dados) {
 
         const nomeFazendaTratado = fazenda.toString().trim();
         const chaveFiltroPropriedade = codProp ? `${codProp} - ${nomeFazendaTratado}` : nomeFazendaTratado;
-        
+
         // REGRA DE FAZENDAS: Se o filtro estiver vazio (botão Limpar), não mostra nada!
         if (propriedadesSelecionadas.size === 0 || !propriedadesSelecionadas.has(chaveFiltroPropriedade)) return;
 
@@ -374,13 +374,13 @@ function renderizarKanban(dados) {
         if (!talhao) return;
 
         const areaFloat = parseFloat(row['Área Planejada'] || row['Área do Talhão'] || row['Área Plantada'] || 0) || 0;
-        
+
         let dataStartRaw = cicloSelecionado === "Cana Planta" ? row['Encerramento. Plantio'] : row['Data Colheita'];
         const osStart = row['OS-Plantio'] ? row['OS-Plantio'].toString().trim() : '-';
         const tipoOperacaoStart = row['Operação'] ? row['Operação'].toString().trim() : '';
 
         const dataStartStr = dataStartRaw ? dataStartRaw.toString().trim() : '';
-        
+
         if (dataStartStr === '' || dataStartStr === '-') {
             linesProcessadas.push({
                 tipo: 'sem_plantio',
@@ -391,7 +391,7 @@ function renderizarKanban(dados) {
                 numOSPlantio: osStart,
                 tipoOperacao: tipoOperacaoStart
             });
-            return; 
+            return;
         }
 
         const diasAtual = row['Dias Plantado/Colhido'] !== undefined ? row['Dias Plantado/Colhido'] : '0';
@@ -518,7 +518,7 @@ function renderizarKanban(dados) {
     // ESTRUTURAS DE AGRUPAMENTO DOS CARDS VISUAIS
     const cartoesSemPlantioAgrupados = {};
     const cartoesPendentesAgrupados = {};
-    const cartoesAndamentoAgrupados = {}; 
+    const cartoesAndamentoAgrupados = {};
     const cartoesRealizadasAgrupados = {};
 
     linesProcessadas.forEach(item => {
@@ -682,7 +682,7 @@ function renderizarKanban(dados) {
 function processarAbasDoWorkbook(wb) {
     let termoBusca = cicloSelecionado === "Cana Planta" ? "Tratos Cana Planta" : "Tratos Cana Soca";
     const nomeAbaAlvo = wb.SheetNames.find(name => name.includes(termoBusca)) || wb.SheetNames[0];
-    
+
     const dadosJson = XLSX.utils.sheet_to_json(wb.Sheets[nomeAbaAlvo]);
     dadosOriginaisPlanilha = dadosJson;
 
@@ -712,9 +712,9 @@ function processarAbasDoWorkbook(wb) {
             { cod: '2187', desc: 'CORTE DE SOQUEIRA - TERCEIROS' }
         ];
     }
-    
+
     gerarFiltrosLaterais(dadosJson);
-    gerarFiltrosOperacoes(operacoesMapeadas); 
+    gerarFiltrosOperacoes(operacoesMapeadas);
     renderizarKanban(dadosJson);
 }
 
@@ -724,7 +724,7 @@ function processarPlanilha(arquivo) {
         try {
             const dados = new Uint8Array(e.target.result);
             const workbook = XLSX.read(dados, { type: 'array', cellDates: true });
-            
+
             planilhaWorkbookGlobal = workbook;
             processarAbasDoWorkbook(workbook);
 

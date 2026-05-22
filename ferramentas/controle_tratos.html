@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🚜 Kanban de Controle Agrícola</title>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/controle_tratos.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 
         <div class="ciclo-selector">
             <button id="btn-cana-planta" class="btn-ciclo active">🌱 Cana Planta</button>
-            <button id="btn-cana-soca" class="btn-ciclo">🪵 Cana Soca</button>
+            <button id="btn-cana-soca" class="btn-ciclo">🌱 Cana Soca</button>
         </div>
 
         <div id="drop-zone" onclick="document.getElementById('upload-excel').click();">
@@ -28,24 +28,24 @@
     <div class="kanban-wrapper">
 
         <aside id="card-filtros" class="sidebar-filtros">
-    <h3 class="sidebar-title">📍 Filtrar Fazendas</h3>
-    <div class="sidebar-actions">
-        <button id="btn-marcar-todos" type="button" class="btn-filter">☑️ Marcar Todas</button>
-        <button id="btn-desmarcar-todos" type="button" class="btn-filter">⬜ Limpar</button>
-    </div>
-    <div id="lista-propriedades-filtros" class="filter-list">
-        <p class="filter-placeholder">Aguardando planilha...</p>
-    </div>
+            <h3 class="sidebar-title">📍 Filtrar Fazendas</h3>
+            <div class="sidebar-actions">
+                <button id="btn-marcar-todos" type="button" class="btn-filter">☑️ Marcar Todas</button>
+                <button id="btn-desmarcar-todos" type="button" class="btn-filter">⬜ Limpar</button>
+            </div>
+            <div id="lista-propriedades-filtros" class="filter-list">
+                <p class="filter-placeholder">Aguardando planilha...</p>
+            </div>
 
-    <h3 class="sidebar-title">⚙️ Filtrar Operações</h3>
-    <div class="sidebar-actions">
-        <button id="btn-marcar-ops" type="button" class="btn-filter">☑️ Ver Todas</button>
-        <button id="btn-desmarcar-ops" type="button" class="btn-filter">⬜ Limpar</button>
-    </div>
-    <div id="lista-operacoes-filtros" class="filter-list">
-        <p class="filter-placeholder">Aguardando planilha...</p>
-    </div>
-</aside>
+            <h3 class="sidebar-title">⚙️ Filtrar Operações</h3>
+            <div class="sidebar-actions">
+                <button id="btn-marcar-ops" type="button" class="btn-filter">☑️ Ver Todas</button>
+                <button id="btn-desmarcar-ops" type="button" class="btn-filter">⬜ Limpar</button>
+            </div>
+            <div id="lista-operacoes-filtros" class="filter-list">
+                <p class="filter-placeholder">Aguardando planilha...</p>
+            </div>
+        </aside>
 
         <div class="container">
             <div class="column">
@@ -71,7 +71,7 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="../js/controle_tratos.js"></script>
 </body>
 
 </html>
