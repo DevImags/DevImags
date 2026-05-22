@@ -493,7 +493,7 @@ function renderizarKanban(dados) {
                     <p><strong>Talões:</strong> ${extrairStringTalhoesLimpa(grupo.talhoes)} | <strong>Área:</strong> ${grupo.areaTotal.toFixed(2)} há</p>
                     <p class="card-label-text">Operações Pendentes:</p>
                     ${listaOpsHtml}
-                    <p class="card-age">Idade Atual: <strong>${grupo.dias} Days</strong></p>
+                    <p class="card-age">Idade Atual: <strong>${grupo.dias} Dias</strong></p>
                     <div class="card-badge-container"><span class="status-alert pending">⏳ Planejado</span></div>
                 </article>`;
         });
@@ -512,7 +512,7 @@ function renderizarKanban(dados) {
                         ${blocoInfoOSHtml}
                         <p style="font-size: 12px; color: #aaa; margin: 4px 0;"><strong>Operação:</strong> ${grupo.opDesc} (${grupo.opCod})</p>
                     </div>
-                    <p class="card-age">Idade Atual: <strong>${grupo.diasMax} Days</strong></p>
+                    <p class="card-age">Idade Atual: <strong>${grupo.diasMax} Dias</strong></p>
                     <div class="card-badge-container"><span class="status-alert progress">⚙️ O.S. Liberada</span></div>
                 </article>`;
         });
