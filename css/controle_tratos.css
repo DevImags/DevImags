@@ -111,67 +111,53 @@ h1 {
 .progress-title { color: #2196F3; border-bottom-color: #2196F3; }
 .success-title { color: #4CAF50; border-bottom-color: #4CAF50; }
 
-/* Filtros Laterais */
+/* Atualização da barra lateral para se comportar como um container flex vertical */
 .sidebar-filtros {
-    width: 260px;
-    background-color: #1e1e1e;
-    border-radius: 8px;
+    width: 280px;
+    background-color: #1a1a1a;
     padding: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    max-height: 75vh;
-    overflow-y: auto;
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Faz os elementos empilharem verticalmente */
+    max-height: calc(100vh - 120px); /* Limita a altura total da barra lateral à tela */
     position: sticky;
     top: 20px;
 }
 
-.sidebar-title {
-    margin: 0 0 12px 0;
-    font-size: 12px;
-    color: #4CAF50;
-    border-bottom: 2px solid #444;
-    padding-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.sidebar-actions {
-    margin-bottom: 15px;
-    display: flex;
-    gap: 8px;
-}
-
-.btn-filter {
-    flex: 1;
-    background: #444;
-    color: #fff;
-    border: 1px solid #555;
-    padding: 6px;
-    font-size: 11px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: background 0.2s;
-}
-
-.btn-filter:hover { background: #555; }
-
+/* Modificação na lista de filtros para limitar a altura interna */
 .filter-list {
-    display: flex;
-    flex-direction: column;
-    max-height: 50vh;
-    overflow-y: auto;
+    flex: 1; /* Faz as listas dividirem o espaço disponível igualmente */
+    max-height: 250px; /* Impede que uma lista empurre a outra para fora da tela */
+    overflow-y: auto; /* Ativa a rolagem interna só quando necessário */
+    margin-bottom: 15px;
+    background-color: #121212;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #333;
+}
+
+/* Deixar as barras de rolagem mais finas e elegantes (opcional) */
+.filter-list::-webkit-scrollbar {
+    width: 6px;
+}
+.filter-list::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 4px;
+}
+.filter-list::-webkit-scrollbar-thumb:hover {
+    background-color: #4CAF50;
 }
 
 .filter-placeholder {
-    font-size: 11px;
+    font-size: 10px;
     color: #777;
     text-align: center;
     margin: 10px 0;
 }
 
 .filtro-opcao {
-    font-size: 11px;
+    font-size: 10px;
     color: #ccc;
     padding: 4px;
     border-radius: 4px;
@@ -202,12 +188,12 @@ h1 {
 .card-prop-code {
     color: #888;
     font-weight: normal;
-    font-size: 13px;
+    font-size: 10px;
     margin-left: 4px;
 }
 
 .card p {
-    font-size: 12px;
+    font-size: 10px;
     color: #ccc;
     margin: 4px 0;
 }
@@ -221,19 +207,19 @@ h1 {
     padding: 4px 6px;
     border-radius: 4px;
     display: inline-block;
-    font-size: 12px;
+    font-size: 10px;
     color: #07f743;
     font-weight: bold;
 }
 
 .card-os-type {
     color: #fff;
-    font-size: 11px;
+    font-size: 10px;
     margin-left: 4px;
 }
 
 .card-op-tag {
-    font-size: 12px;
+    font-size: 10px;
     background: #222;
     color: #fff;
     padding: 4px 6px;
@@ -253,7 +239,7 @@ h1 {
     background: #222;
     padding: 3px 6px;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 10px;
     color: #fff;
     align-self: flex-start;
 }
@@ -264,18 +250,18 @@ h1 {
     margin-top: 6px;
     margin-bottom: 2px;
     color: #888;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .card-age {
-    font-size: 12px;
+    font-size: 10px;
     margin-top: 6px;
     color: #bbb;
 }
 
 .card-help-text {
     color: #777;
-    font-size: 12px;
+    font-size: 10px;
     margin-top: 6px;
 }
 
@@ -288,7 +274,7 @@ h1 {
     padding: 4px 8px;
     border-radius: 4px;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 10px;
     display: inline-block;
 }
 
@@ -298,7 +284,7 @@ h1 {
     padding: 3px 6px;
     border-radius: 4px;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 10px;
     display: inline-block;
 }
 
@@ -318,7 +304,7 @@ h1 {
 }
 
 .empty-column-msg {
-    font-size: 12px;
+    font-size: 10px;
     color: #666;
     text-align: center;
     padding: 15px 0;
