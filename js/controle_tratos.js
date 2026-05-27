@@ -434,8 +434,21 @@ function renderizarKanban(dados) {
                 if (op.cod === '2138' && opInfo.emBranco && tem2087AtivaOuRealizada) return;
                 if (op.cod === '2087' && statusGeralOps['2087'].emBranco && tem2138AtivaOuRealizada) return;
 
-                const tem2078AtivaOuRealizada = statusGeralOps['2078']?.ativa || statusGeralOps['2078']?.realizada;
-                if (op.cod === '2143' && statusGeralOps['2143'].emBranco && tem2078AtivaOuRealizada) return;
+                // --- CÓDIGO NOVO CORRIGIDO ---
+                // 1. Mapeamos se QUALQUER quebra-lombo já foi realizada neste talhão
+                const algumaQuebraLomboRealizada =
+                    statusGeralOps['2078']?.realizada ||
+                    statusGeralOps['2079']?.realizada ||
+                    statusGeralOps['2143']?.realizada;
+
+                // 2. Se qualquer uma já foi REALIZADA, barramos TODAS as outras quebra-lombos que estejam "em Branco" (Pendentes)
+                if (['2078', '2079', '2143'].includes(op.cod) && opInfo.emBranco && algumaQuebraLomboRealizada) {
+                    return; // Mata a pendência duplicada se uma delas já foi concluída!
+                }
+
+                // 3. Mantém a regra de preferência caso NENHUMA tenha sido realizada ainda (Fluxo de planejamento puro)
+                const tem2078Ativa = statusGeralOps['2078']?.ativa;
+                if (op.cod === '2143' && opInfo.emBranco && tem2078Ativa) return;
 
                 const b2078EmBranco = statusGeralOps['2078']?.emBranco;
                 const b2079EmBranco = statusGeralOps['2079']?.emBranco;
@@ -597,7 +610,7 @@ function renderizarKanban(dados) {
         });
     }
 
-    // 2. Renderização: Planejado (Pendentes)
+    // 2. Renderização: Planejado (Pendentes) -> TRADUZIDO PARA "Dias"
     if (colPendentes) {
         Object.values(cartoesPendentesAgrupados).sort((a, b) => (parseInt(b.dias) || 0) - (parseInt(a.dias) || 0)).forEach(grupo => {
             totalCardsPendentes++;
@@ -616,7 +629,7 @@ function renderizarKanban(dados) {
         });
     }
 
-    // 3. Renderização: Em Andamento
+    // 3. Renderização: Em Andamento -> TRADUZIDO PARA "Dias"
     if (colAndamento) {
         Object.values(cartoesAndamentoAgrupados).sort((a, b) => b.diasMax - a.diasMax).forEach(grupo => {
             totalCardsAndamento++;
