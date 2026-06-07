@@ -1,15 +1,14 @@
-// Captura dos elementos do HTML usando os IDs corretos
 const dropZone = document.getElementById('drop-zone');
 const fileInput = document.getElementById('upload-excel');
 
-// VARIÁVEIS GLOBAIS DE CONTROLE DOS FILTROS E CICLO
+
 let dadosOriginaisPlanilha = [];
 let planilhaWorkbookGlobal = null;
 let propriedadesSelecionadas = new Set();
-let operacoesSelecionadas = new Set(); // Nova variável global para operações
+let operacoesSelecionadas = new Set();
 let cicloSelecionado = "Cana Planta";
 
-// Eventos de clique e arrastar arquivo para Upload
+
 if (dropZone) {
     dropZone.addEventListener('click', () => fileInput.click());
 
@@ -33,7 +32,6 @@ if (fileInput) {
     });
 }
 
-// FUNÇÃO AUXILIAR: Formata qualquer formato de data do JavaScript para padrão brasileiro DD/MM/AAAA
 function formatarDataBR(dataInput) {
     if (!dataInput) return '-';
     let d = new Date(dataInput);
@@ -44,7 +42,6 @@ function formatarDataBR(dataInput) {
     return `${dia}/${mes}/${ano}`;
 }
 
-// ALTERNADOR DE CICLO (CANA PLANTA / CANA SOCA)
 const btnCanaPlanta = document.getElementById('btn-cana-planta');
 const btnCanaSoca = document.getElementById('btn-cana-soca');
 
@@ -54,7 +51,7 @@ if (btnCanaPlanta && btnCanaSoca) {
         cicloSelecionado = "Cana Planta";
         btnCanaPlanta.classList.add('active');
         btnCanaSoca.classList.remove('active');
-        propriedadesSelecionadas.clear(); // Reseta filtros para recarregar com a nova aba
+        propriedadesSelecionadas.clear();
         operacoesSelecionadas.clear();
         if (planilhaWorkbookGlobal) processarAbasDoWorkbook(planilhaWorkbookGlobal);
     });
@@ -64,13 +61,13 @@ if (btnCanaPlanta && btnCanaSoca) {
         cicloSelecionado = "Cana Soca";
         btnCanaSoca.classList.add('active');
         btnCanaPlanta.classList.remove('active');
-        propriedadesSelecionadas.clear(); // Reseta filtros para recarregar com a nova aba
+        propriedadesSelecionadas.clear();
         operacoesSelecionadas.clear();
         if (planilhaWorkbookGlobal) processarAbasDoWorkbook(planilhaWorkbookGlobal);
     });
 }
 
-// FILTRO LATERAL 1: FAZENDAS (PROPRIEDADES)
+
 function gerarFiltrosLaterais(dados) {
     const containerFiltros = document.getElementById('lista-propriedades-filtros');
     if (!containerFiltros) return;
@@ -93,7 +90,7 @@ function gerarFiltrosLaterais(dados) {
         return a.localeCompare(b);
     });
 
-    // Seleciona todas automaticamente na primeira carga se o filtro estiver totalmente limpo
+   
     if (propriedadesSelecionadas.size === 0) {
         listaOrdenada.forEach(p => propriedadesSelecionadas.add(p));
     }
@@ -155,7 +152,7 @@ function gerarFiltrosLaterais(dados) {
         });
     });
 
-    // BOTÕES: MARCAR TODAS / LIMPAR (FAZENDAS)
+   
     const btnMarcarTodos = document.getElementById('btn-marcar-todos');
     const btnDesmarcarTodos = document.getElementById('btn-desmarcar-todos');
 
@@ -181,13 +178,12 @@ function gerarFiltrosLaterais(dados) {
     atualizarVisualCheckboxes();
 }
 
-// FILTRO LATERAL 2: OPERAÇÕES DINÂMICAS
+
 function gerarFiltrosOperacoes(operacoesMapeadas) {
     const containerOps = document.getElementById('lista-operacoes-filtros');
     if (!containerOps) return;
     containerOps.innerHTML = '';
 
-    // Seleciona todas automaticamente na primeira carga se o filtro estiver totalmente limpo
     if (operacoesSelecionadas.size === 0) {
         operacoesMapeadas.forEach(op => operacoesSelecionadas.add(op.cod));
     }
@@ -256,7 +252,6 @@ function gerarFiltrosOperacoes(operacoesMapeadas) {
         });
     });
 
-    // BOTÕES: MARCAR TODAS / LIMPAR (OPERAÇÕES)
     const btnMarcar = document.getElementById('btn-marcar-ops');
     const btnDesmarcar = document.getElementById('btn-desmarcar-ops');
 
@@ -282,7 +277,6 @@ function gerarFiltrosOperacoes(operacoesMapeadas) {
     atualizarVisualOps();
 }
 
-// FUNÇÃO PRINCIPAL: RENDERIZADOR DO KANBAN
 function renderizarKanban(dados) {
     const colSemPlantio = document.getElementById('col-sem-plantio');
     const colPendentes = document.getElementById('col-pendentes');
@@ -294,7 +288,6 @@ function renderizarKanban(dados) {
     if (colAndamento) colAndamento.innerHTML = '';
     if (colRealizadas) colRealizadas.innerHTML = '';
 
-    // CONFIGURAÇÃO DINÂMICA DE OPERAÇÕES BASEADA NO CICLO SELECIONADO
     let operacoesMapeadas = [];
     if (cicloSelecionado === "Cana Planta") {
         operacoesMapeadas = [
@@ -321,7 +314,6 @@ function renderizarKanban(dados) {
         ];
     }
 
-    // MAPEAR O HISTÓRICO GLOBAL REAL DE CADA TALHÃO
     let historicoTalhoesGlobal = {};
 
     dados.forEach(row => {
@@ -367,7 +359,6 @@ function renderizarKanban(dados) {
         const nomeFazendaTratado = fazenda.toString().trim();
         const chaveFiltroPropriedade = codProp ? `${codProp} - ${nomeFazendaTratado}` : nomeFazendaTratado;
 
-        // REGRA DE FAZENDAS: Se o filtro estiver vazio (botão Limpar), não mostra nada!
         if (propriedadesSelecionadas.size === 0 || !propriedadesSelecionadas.has(chaveFiltroPropriedade)) return;
 
         const talhao = (row['Talhão'] || row['Talhao'] || '').toString().trim();
@@ -418,7 +409,6 @@ function renderizarKanban(dados) {
         let opsRealizadasDestaLinha = [];
 
         operacoesMapeadas.forEach(op => {
-            // REGRA DE OPERAÇÕES: Se o filtro estiver vazio (botão Limpar), não processa esta operação!
             if (operacoesSelecionadas.size === 0 || !operacoesSelecionadas.has(op.cod)) return;
 
             let opInfo = statusGeralOps[op.cod];
@@ -434,19 +424,15 @@ function renderizarKanban(dados) {
                 if (op.cod === '2138' && opInfo.emBranco && tem2087AtivaOuRealizada) return;
                 if (op.cod === '2087' && statusGeralOps['2087'].emBranco && tem2138AtivaOuRealizada) return;
 
-                // --- CÓDIGO NOVO CORRIGIDO ---
-                // 1. Mapeamos se QUALQUER quebra-lombo já foi realizada neste talhão
                 const algumaQuebraLomboRealizada =
                     statusGeralOps['2078']?.realizada ||
                     statusGeralOps['2079']?.realizada ||
                     statusGeralOps['2143']?.realizada;
-
-                // 2. Se qualquer uma já foi REALIZADA, barramos TODAS as outras quebra-lombos que estejam "em Branco" (Pendentes)
+ (Pendentes)
                 if (['2078', '2079', '2143'].includes(op.cod) && opInfo.emBranco && algumaQuebraLomboRealizada) {
-                    return; // Mata a pendência duplicada se uma delas já foi concluída!
+                    return;
                 }
 
-                // 3. Mantém a regra de preferência caso NENHUMA tenha sido realizada ainda (Fluxo de planejamento puro)
                 const tem2078Ativa = statusGeralOps['2078']?.ativa;
                 if (op.cod === '2143' && opInfo.emBranco && tem2078Ativa) return;
 
@@ -528,7 +514,6 @@ function renderizarKanban(dados) {
         }
     });
 
-    // ESTRUTURAS DE AGRUPAMENTO DOS CARDS VISUAIS
     const cartoesSemPlantioAgrupados = {};
     const cartoesPendentesAgrupados = {};
     const cartoesAndamentoAgrupados = {};
@@ -580,7 +565,6 @@ function renderizarKanban(dados) {
     let totalCardsSemPlantio = 0, areaTotalSemPlantio = 0;
     let totalCardsPendentes = 0, totalCardsAndamento = 0, totalCardsRealizadas = 0;
 
-    // 1. Renderização: Sem Plantio
     if (colSemPlantio) {
         Object.values(cartoesSemPlantioAgrupados).forEach(grupo => {
             totalCardsSemPlantio++;
@@ -610,7 +594,6 @@ function renderizarKanban(dados) {
         });
     }
 
-    // 2. Renderização: Planejado (Pendentes) -> TRADUZIDO PARA "Dias"
     if (colPendentes) {
         Object.values(cartoesPendentesAgrupados).sort((a, b) => (parseInt(b.dias) || 0) - (parseInt(a.dias) || 0)).forEach(grupo => {
             totalCardsPendentes++;
@@ -629,7 +612,6 @@ function renderizarKanban(dados) {
         });
     }
 
-    // 3. Renderização: Em Andamento -> TRADUZIDO PARA "Dias"
     if (colAndamento) {
         Object.values(cartoesAndamentoAgrupados).sort((a, b) => b.diasMax - a.diasMax).forEach(grupo => {
             totalCardsAndamento++;
@@ -648,7 +630,6 @@ function renderizarKanban(dados) {
         });
     }
 
-    // 4. Renderização: Realizadas
     if (colRealizadas) {
         Object.values(cartoesRealizadasAgrupados).sort((a, b) => (parseInt(b.dias) || 0) - (parseInt(a.dias) || 0)).forEach(grupo => {
             totalCardsRealizadas++;
@@ -691,7 +672,6 @@ function renderizarKanban(dados) {
     if (txtTituloRealizadas) txtTituloRealizadas.innerHTML = `✅ Realizadas (${totalCardsRealizadas})`;
 }
 
-// FUNÇÃO ISOLADA: Faz a releitura da aba correta e atualiza dinamicamente sem forçar download
 function processarAbasDoWorkbook(wb) {
     let termoBusca = cicloSelecionado === "Cana Planta" ? "Tratos Cana Planta" : "Tratos Cana Soca";
     const nomeAbaAlvo = wb.SheetNames.find(name => name.includes(termoBusca)) || wb.SheetNames[0];
@@ -699,7 +679,6 @@ function processarAbasDoWorkbook(wb) {
     const dadosJson = XLSX.utils.sheet_to_json(wb.Sheets[nomeAbaAlvo]);
     dadosOriginaisPlanilha = dadosJson;
 
-    // DEFINIÇÃO DINÂMICA DAS OPERAÇÕES PARA MONTAR O FILTRO CORRETO
     let operacoesMapeadas = [];
     if (cicloSelecionado === "Cana Planta") {
         operacoesMapeadas = [

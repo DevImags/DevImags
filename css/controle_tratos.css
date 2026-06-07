@@ -1,3 +1,35 @@
+:root {
+
+  /* Background */
+  --bg: #04090D;
+  --bg1: #0B1215;
+  --bg2: #BFBFBF85;
+  --bg3: #12CC59;
+  --bg4: #12CC5933;
+  --bg5: #FFFFFF;
+
+  /* Cores */
+  --cr: #FFFFFF;
+  --cr1: #BFBFBF;
+  --cr2: #04090d;
+  --cr3: #0B1215;
+  --cr4: #12CC59;
+  --cr5: #12CC5933;
+
+  /* Fontes */
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-bold: 'Arial Black', sans-serif;
+
+
+  /* Hover */
+  --hover: #12CC59;
+  --hover2: #12CC5933;
+
+  --header-height: 100px;
+}
+
+
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #121212;
@@ -6,7 +38,6 @@ body {
     padding: 20px;
 }
 
-/* Cabeçalho */
 .header-card {
     position: relative;
     display: flex;
@@ -19,13 +50,25 @@ body {
     min-height: 50px;
 }
 
+a {
+    margin-left: 20px;
+    background-color: var(--bg3);
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: var(--font-main);
+    font-size: 16px;
+    text-decoration: none;
+    color: var(--cr2);
+}
+
 h1 {
     color: #4CAF50;
     margin: 0;
     font-size: 24px;
 }
 
-/* Botões Seletores de Ciclo */
+
 .ciclo-selector {
     display: flex;
     gap: 10px;
@@ -54,7 +97,7 @@ h1 {
     border-color: #4CAF50;
 }
 
-/* Upload Drop Zone */
+
 #drop-zone {
     border: 2px dashed #4CAF50;
     border-radius: 6px;
@@ -72,7 +115,7 @@ h1 {
     color: #ffffff;
 }
 
-/* Layout Kanban */
+
 .kanban-wrapper {
     display: flex;
     gap: 20px;
@@ -105,13 +148,13 @@ h1 {
     text-align: center;
 }
 
-/* Cores das Colunas */
+
 .not-planted-title { color: #9c27b0; border-bottom-color: #9c27b0; }
 .pending-title { color: #ffc107; border-bottom-color: #ffc107; }
 .progress-title { color: #2196F3; border-bottom-color: #2196F3; }
 .success-title { color: #4CAF50; border-bottom-color: #4CAF50; }
 
-/* Atualização da barra lateral para se comportar como um container flex vertical */
+
 .sidebar-filtros {
     width: 280px;
     background-color: #1a1a1a;
@@ -119,17 +162,16 @@ h1 {
     border-radius: 6px;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column; /* Faz os elementos empilharem verticalmente */
-    max-height: calc(100vh - 120px); /* Limita a altura total da barra lateral à tela */
+    flex-direction: column;
+    max-height: calc(100vh - 120px);
     position: sticky;
     top: 20px;
 }
 
-/* Modificação na lista de filtros para limitar a altura interna */
 .filter-list {
-    flex: 1; /* Faz as listas dividirem o espaço disponível igualmente */
-    max-height: 250px; /* Impede que uma lista empurre a outra para fora da tela */
-    overflow-y: auto; /* Ativa a rolagem interna só quando necessário */
+    flex: 1;
+    max-height: 250px;
+    overflow-y: auto;
     margin-bottom: 15px;
     background-color: #121212;
     padding: 8px;
@@ -137,7 +179,6 @@ h1 {
     border: 1px solid #333;
 }
 
-/* Deixar as barras de rolagem mais finas e elegantes (opcional) */
 .filter-list::-webkit-scrollbar {
     width: 6px;
 }
@@ -166,7 +207,6 @@ h1 {
 
 .filtro-opcao:hover { background-color: #2a2a2a; }
 
-/* Estilização Interna dos Cartões (Substitui os Inline Styles) */
 .card {
     background-color: #252525;
     border-radius: 6px;
@@ -269,7 +309,6 @@ h1 {
     margin-top: 8px;
 }
 
-/* Badges de Status do Kanban */
 .status-alert {
     padding: 4px 8px;
     border-radius: 4px;
