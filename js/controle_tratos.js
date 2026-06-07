@@ -713,9 +713,7 @@ function renderizarKanban(dados) {
     const txtTituloAndamento = document.getElementById('titulo-andamento');
     const txtTituloRealizadas = document.getElementById('titulo-realizadas');
 
-    // =========================================================================
-    // ATUALIZAÇÃO DOS CONTADORES NOS H2 (CABEÇALHOS PADRONIZADOS)
-    // =========================================================================
+
     if (txtTituloSemPlantio) {
         const nomeColunaBase = cicloSelecionado === "Cana Planta" ? "🌱 Sem Plantio" : "🪵 Sem Corte";
         txtTituloSemPlantio.innerHTML = `${nomeColunaBase} (${totalCardsSemPlantio}) <br><strong>${areaTotalSemPlantio.toFixed(2)} há</strong>`;
@@ -802,9 +800,6 @@ if (document.getElementById('bloco-reforma')) {
 }
 
 
-// =========================================================================
-// EXPORTAÇÃO DIRETA PARA PRÉ-IMPRESSÃO / PDF 
-// =========================================================================
 document.addEventListener("DOMContentLoaded", () => {
     const btnPdf = document.getElementById('btn-pdf');
 
