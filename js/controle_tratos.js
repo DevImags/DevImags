@@ -1,13 +1,16 @@
+
 const dropZone = document.getElementById('drop-zone');
 const fileInput = document.getElementById('upload-excel');
 
 
 let dadosOriginaisPlanilha = [];
 let planilhaWorkbookGlobal = null;
+let dadosOriginaisPlanilha = []; 
+let planilhaWorkbookGlobal = null; 
 let propriedadesSelecionadas = new Set();
 let operacoesSelecionadas = new Set();
+let operacoesSelecionadas = new Set();
 let cicloSelecionado = "Cana Planta";
-
 
 if (dropZone) {
     dropZone.addEventListener('click', () => fileInput.click());
@@ -35,7 +38,7 @@ if (fileInput) {
 function formatarDataBR(dataInput) {
     if (!dataInput) return '-';
     let d = new Date(dataInput);
-    if (isNaN(d.getTime())) return dataInput.toString();
+    if (isNaN(d.getTime())) return dataInput.toString(); 
     let dia = d.getDate().toString().padStart(2, '0');
     let mes = (d.getMonth() + 1).toString().padStart(2, '0');
     let ano = d.getFullYear();
@@ -52,7 +55,12 @@ if (btnCanaPlanta && btnCanaSoca) {
         btnCanaPlanta.classList.add('active');
         btnCanaSoca.classList.remove('active');
         propriedadesSelecionadas.clear();
+        
+        propriedadesSelecionadas.clear();
         operacoesSelecionadas.clear();
+        
+        renderizarKanban(dadosOriginaisPlanilha);
+        
         if (planilhaWorkbookGlobal) processarAbasDoWorkbook(planilhaWorkbookGlobal);
     });
 
@@ -61,12 +69,15 @@ if (btnCanaPlanta && btnCanaSoca) {
         cicloSelecionado = "Cana Soca";
         btnCanaSoca.classList.add('active');
         btnCanaPlanta.classList.remove('active');
+        
         propriedadesSelecionadas.clear();
         operacoesSelecionadas.clear();
+        
+        renderizarKanban(dadosOriginaisPlanilha);
+        
         if (planilhaWorkbookGlobal) processarAbasDoWorkbook(planilhaWorkbookGlobal);
     });
 }
-
 
 function gerarFiltrosLaterais(dados) {
     const containerFiltros = document.getElementById('lista-propriedades-filtros');
@@ -90,7 +101,6 @@ function gerarFiltrosLaterais(dados) {
         return a.localeCompare(b);
     });
 
-   
     if (propriedadesSelecionadas.size === 0) {
         listaOrdenada.forEach(p => propriedadesSelecionadas.add(p));
     }
@@ -152,7 +162,6 @@ function gerarFiltrosLaterais(dados) {
         });
     });
 
-   
     const btnMarcarTodos = document.getElementById('btn-marcar-todos');
     const btnDesmarcarTodos = document.getElementById('btn-desmarcar-todos');
 
@@ -169,21 +178,19 @@ function gerarFiltrosLaterais(dados) {
         const novoBtnDesmarcar = btnDesmarcarTodos.cloneNode(true);
         btnDesmarcarTodos.parentNode.replaceChild(novoBtnDesmarcar, btnDesmarcarTodos);
         novoBtnDesmarcar.addEventListener('click', () => {
-            propriedadesSelecionadas.clear();
-            atualizarVisualCheckboxes();
-            renderizarKanban(dadosOriginaisPlanilha);
+            propriedadesSelecionadas.clear(); 
+            atualizarVisualCheckboxes();      
+            renderizarKanban(dadosOriginaisPlanilha); 
         });
     }
 
     atualizarVisualCheckboxes();
 }
 
-
 function gerarFiltrosOperacoes(operacoesMapeadas) {
     const containerOps = document.getElementById('lista-operacoes-filtros');
     if (!containerOps) return;
     containerOps.innerHTML = '';
-
     if (operacoesSelecionadas.size === 0) {
         operacoesMapeadas.forEach(op => operacoesSelecionadas.add(op.cod));
     }
@@ -192,7 +199,7 @@ function gerarFiltrosOperacoes(operacoesMapeadas) {
         containerOps.querySelectorAll('.filtro-opcao').forEach(div => {
             const codOp = div.getAttribute('data-op');
             const chk = div.querySelector('.chk-op');
-
+            
             if (operacoesSelecionadas.has(codOp)) {
                 div.classList.add('active');
                 if (chk) chk.checked = true;
@@ -205,9 +212,9 @@ function gerarFiltrosOperacoes(operacoesMapeadas) {
 
     operacoesMapeadas.forEach(op => {
         const divOpcao = document.createElement('div');
-        divOpcao.className = 'filtro-opcao';
+        divOpcao.className = 'filtro-opcao'; 
         divOpcao.setAttribute('data-op', op.cod);
-
+        
         divOpcao.style.display = 'flex';
         divOpcao.style.alignItems = 'center';
         divOpcao.style.width = '100%';
@@ -268,9 +275,9 @@ function gerarFiltrosOperacoes(operacoesMapeadas) {
         const novoBtn = btnDesmarcar.cloneNode(true);
         btnDesmarcar.parentNode.replaceChild(novoBtn, btnDesmarcar);
         novoBtn.addEventListener('click', () => {
-            operacoesSelecionadas.clear();
-            atualizarVisualOps();
-            renderizarKanban(dadosOriginaisPlanilha);
+            operacoesSelecionadas.clear(); 
+            atualizarVisualOps();          
+            renderizarKanban(dadosOriginaisPlanilha); 
         });
     }
 
@@ -282,12 +289,29 @@ function renderizarKanban(dados) {
     const colPendentes = document.getElementById('col-pendentes');
     const colAndamento = document.getElementById('col-andamento');
     const colRealizadas = document.getElementById('col-realizadas');
+    
+    const colReforma = document.getElementById('col-reforma'); 
+    const blocoReforma = document.getElementById('bloco-reforma');
+
+    if (blocoReforma) {
+        if (cicloSelecionado === "Cana Planta") {
+            blocoReforma.style.display = 'none'; 
+        } else {
+            blocoReforma.style.display = ''; 
+            
+            if (colReforma) {
+                colReforma.innerHTML = '<p class="empty-column-msg">Nenhuma área registrada.</p>';
+            }
+        }
+    }
 
     if (colSemPlantio) colSemPlantio.innerHTML = '';
     if (colPendentes) colPendentes.innerHTML = '';
     if (colAndamento) colAndamento.innerHTML = '';
     if (colRealizadas) colRealizadas.innerHTML = '';
-
+    if (colReforma && cicloSelecionado === "Cana Soca") {
+        colReforma.innerHTML = ''; 
+    }
     let operacoesMapeadas = [];
     if (cicloSelecionado === "Cana Planta") {
         operacoesMapeadas = [
@@ -313,7 +337,6 @@ function renderizarKanban(dados) {
             { cod: '2187', desc: 'CORTE DE SOQUEIRA - TERCEIROS', colsDt: ['Dt. 2187', 'Dt.-2187'] }
         ];
     }
-
     let historicoTalhoesGlobal = {};
 
     dados.forEach(row => {
@@ -332,7 +355,7 @@ function renderizarKanban(dados) {
         operacoesMapeadas.forEach(op => {
             let statusOSStr = (row[`Status da O.S. ${op.cod}`] || row[`Status da O.S.${op.cod}`] || '').toString().trim().toUpperCase();
             let osString = (row[`OS-${op.cod}`] || row[`OS ${op.cod}`] || '').toString().trim();
-
+            
             let temData = false;
             for (let col of op.colsDt) {
                 if (row[col] !== undefined && row[col] !== '' && row[col] !== '-') {
@@ -344,10 +367,17 @@ function renderizarKanban(dados) {
             if (temData || statusOSStr === 'ENCERRADA' || statusOSStr === 'CONCLUIDA') {
                 historicoTalhoesGlobal[chaveTalhao][op.cod].realizada = true;
             } else if ((osString && osString !== '-') || statusOSStr === 'LIBERADA' || statusOSStr === 'ANDAMENTO') {
+                historicoTalhoesGlobal[chaveTalhao][op.cod].active = true;
                 historicoTalhoesGlobal[chaveTalhao][op.cod].ativa = true;
             }
         });
     });
+
+    const cartoesSemPlantioAgrupados = {};
+    const cartoesReformaAgrupados = {};
+    const cartoesPendentesAgrupados = {};
+    const cartoesAndamentoAgrupados = {}; 
+    const cartoesRealizadasAgrupados = {};
 
     const linesProcessadas = [];
 
@@ -358,7 +388,7 @@ function renderizarKanban(dados) {
 
         const nomeFazendaTratado = fazenda.toString().trim();
         const chaveFiltroPropriedade = codProp ? `${codProp} - ${nomeFazendaTratado}` : nomeFazendaTratado;
-
+    
         if (propriedadesSelecionadas.size === 0 || !propriedadesSelecionadas.has(chaveFiltroPropriedade)) return;
 
         const talhao = (row['Talhão'] || row['Talhao'] || '').toString().trim();
@@ -366,12 +396,23 @@ function renderizarKanban(dados) {
 
         const areaFloat = parseFloat(row['Área Planejada'] || row['Área do Talhão'] || row['Área Plantada'] || 0) || 0;
 
+        if (cicloSelecionado === "Cana Soca" && row['__isReforma'] === true) {
+            linesProcessadas.push({
+                tipo: 'reforma',
+                fazenda: nomeFazendaTratado,
+                codPropriedade: codProp,
+                talhao: talhao,
+                area: areaFloat
+            });
+            return;
+        }
+        
         let dataStartRaw = cicloSelecionado === "Cana Planta" ? row['Encerramento. Plantio'] : row['Data Colheita'];
         const osStart = row['OS-Plantio'] ? row['OS-Plantio'].toString().trim() : '-';
         const tipoOperacaoStart = row['Operação'] ? row['Operação'].toString().trim() : '';
 
         const dataStartStr = dataStartRaw ? dataStartRaw.toString().trim() : '';
-
+        
         if (dataStartStr === '' || dataStartStr === '-') {
             linesProcessadas.push({
                 tipo: 'sem_plantio',
@@ -382,7 +423,7 @@ function renderizarKanban(dados) {
                 numOSPlantio: osStart,
                 tipoOperacao: tipoOperacaoStart
             });
-            return;
+            return; 
         }
 
         const diasAtual = row['Dias Plantado/Colhido'] !== undefined ? row['Dias Plantado/Colhido'] : '0';
@@ -424,17 +465,8 @@ function renderizarKanban(dados) {
                 if (op.cod === '2138' && opInfo.emBranco && tem2087AtivaOuRealizada) return;
                 if (op.cod === '2087' && statusGeralOps['2087'].emBranco && tem2138AtivaOuRealizada) return;
 
-                const algumaQuebraLomboRealizada =
-                    statusGeralOps['2078']?.realizada ||
-                    statusGeralOps['2079']?.realizada ||
-                    statusGeralOps['2143']?.realizada;
- (Pendentes)
-                if (['2078', '2079', '2143'].includes(op.cod) && opInfo.emBranco && algumaQuebraLomboRealizada) {
-                    return;
-                }
-
-                const tem2078Ativa = statusGeralOps['2078']?.ativa;
-                if (op.cod === '2143' && opInfo.emBranco && tem2078Ativa) return;
+                const tem2078AtivaOuRealizada = statusGeralOps['2078']?.ativa || statusGeralOps['2078']?.realizada;
+                if (op.cod === '2143' && statusGeralOps['2143'].emBranco && tem2078AtivaOuRealizada) return;
 
                 const b2078EmBranco = statusGeralOps['2078']?.emBranco;
                 const b2079EmBranco = statusGeralOps['2079']?.emBranco;
@@ -513,14 +545,16 @@ function renderizarKanban(dados) {
             });
         }
     });
-
-    const cartoesSemPlantioAgrupados = {};
-    const cartoesPendentesAgrupados = {};
-    const cartoesAndamentoAgrupados = {};
-    const cartoesRealizadasAgrupados = {};
-
     linesProcessadas.forEach(item => {
-        if (item.tipo === 'sem_plantio') {
+        if (item.tipo === 'reforma') {
+            const chave = `REFORMA_${item.fazenda}`;
+            if (!cartoesReformaAgrupados[chave]) {
+                cartoesReformaAgrupados[chave] = { fazenda: item.fazenda, codPropriedade: item.codPropriedade, areaTotal: item.area, talhoes: [item.talhao] };
+            } else {
+                if (!cartoesReformaAgrupados[chave].talhoes.includes(item.talhao)) cartoesReformaAgrupados[chave].talhoes.push(item.talhao);
+                cartoesReformaAgrupados[chave].areaTotal += item.area;
+            }
+        } else if (item.tipo === 'sem_plantio') {
             const chave = `SEMPLANTIO_${item.fazenda}_${item.numOSPlantio}_${item.tipoOperacao}`;
             if (!cartoesSemPlantioAgrupados[chave]) {
                 cartoesSemPlantioAgrupados[chave] = { fazenda: item.fazenda, codPropriedade: item.codPropriedade, areaTotal: item.area, talhoes: [item.talhao], numOSPlantio: item.numOSPlantio, tipoOperacao: item.tipoOperacao };
@@ -563,8 +597,8 @@ function renderizarKanban(dados) {
     function determinarUltimaDataFormatada(listaDatas) { let maiorData = null; for (let d of listaDatas) { if (!d || d === 'Concluída' || d === '-') continue; const dataConv = new Date(d); if (!isNaN(dataConv.getTime()) && (!maiorData || dataConv > maiorData)) { maiorData = dataConv; } } return maiorData ? formatarDataBR(maiorData) : 'Concluída'; }
 
     let totalCardsSemPlantio = 0, areaTotalSemPlantio = 0;
+    let totalCardsReforma = 0, areaTotalReforma = 0;
     let totalCardsPendentes = 0, totalCardsAndamento = 0, totalCardsRealizadas = 0;
-
     if (colSemPlantio) {
         Object.values(cartoesSemPlantioAgrupados).forEach(grupo => {
             totalCardsSemPlantio++;
@@ -590,6 +624,21 @@ function renderizarKanban(dados) {
                     ${blocoInfoPlantioIniciado}
                     <p class="card-help-text" style="margin-top: 6px;">${textoStatusAjuda}</p>
                     <div class="card-badge-container"><span class="status-alert default" style="background: #4a148c;">${cicloSelecionado === "Cana Planta" ? "🌱 Sem Plantio" : "🪵 Sem Corte"}</span></div>
+                </article>`;
+        });
+    }
+
+    if (colReforma && cicloSelecionado === "Cana Soca") {
+        Object.values(cartoesReformaAgrupados).forEach(grupo => {
+            totalCardsReforma++;
+            areaTotalReforma += grupo.areaTotal;
+
+            colReforma.innerHTML += `
+                <article class="card" style="border-left: 5px solid #e74c3c;">
+                    <h3>${grupo.codPropriedade ? `${grupo.codPropriedade} - ${grupo.fazenda.toUpperCase()}` : grupo.fazenda.toUpperCase()}</h3>
+                    <p><strong>Talões:</strong> ${extrairStringTalhoesLimpa(grupo.talhoes)} | <strong>Área:</strong> ${grupo.areaTotal.toFixed(2)} há</p>
+                    <p class="card-help-text" style="margin-top: 6px; color: #e74c3c;">Área separada para reforma do canavial.</p>
+                    <div class="card-badge-container"><span class="status-alert pending" style="background-color: #e74c3c; color: white;">🚜 Em Reforma</span></div>
                 </article>`;
         });
     }
@@ -629,7 +678,6 @@ function renderizarKanban(dados) {
                 </article>`;
         });
     }
-
     if (colRealizadas) {
         Object.values(cartoesRealizadasAgrupados).sort((a, b) => (parseInt(b.dias) || 0) - (parseInt(a.dias) || 0)).forEach(grupo => {
             totalCardsRealizadas++;
@@ -654,30 +702,47 @@ function renderizarKanban(dados) {
     }
 
     if (totalCardsSemPlantio === 0 && colSemPlantio) colSemPlantio.innerHTML = '<p class="empty-column-msg">Nenhuma área registrada.</p>';
+    if (totalCardsReforma === 0 && colReforma && cicloSelecionado === "Cana Soca") colReforma.innerHTML = '<p class="empty-column-msg">Nenhuma área registrada.</p>';
     if (totalCardsPendentes === 0 && colPendentes) colPendentes.innerHTML = '<p class="empty-column-msg">Nenhuma área planejada.</p>';
     if (totalCardsAndamento === 0 && colAndamento) colAndamento.innerHTML = '<p class="empty-column-msg">Nenhuma área em campo.</p>';
     if (totalCardsRealizadas === 0 && colRealizadas) colRealizadas.innerHTML = '<p class="empty-column-msg">Nenhuma área encerrada.</p>';
 
     const txtTituloSemPlantio = document.querySelector('.not-planted-title');
+    const txtTituloReforma = document.getElementById('titulo-reforma');
     const txtTituloPendentes = document.getElementById('titulo-pendentes');
     const txtTituloAndamento = document.getElementById('titulo-andamento');
     const txtTituloRealizadas = document.getElementById('titulo-realizadas');
 
+    // =========================================================================
+    // ATUALIZAÇÃO DOS CONTADORES NOS H2 (CABEÇALHOS PADRONIZADOS)
+    // =========================================================================
     if (txtTituloSemPlantio) {
         const nomeColunaBase = cicloSelecionado === "Cana Planta" ? "🌱 Sem Plantio" : "🪵 Sem Corte";
-        txtTituloSemPlantio.innerHTML = `${nomeColunaBase} (${totalCardsSemPlantio}) — <strong>${areaTotalSemPlantio.toFixed(2)} há</strong>`;
+        txtTituloSemPlantio.innerHTML = `${nomeColunaBase} (${totalCardsSemPlantio}) <br><strong>${areaTotalSemPlantio.toFixed(2)} há</strong>`;
     }
-    if (txtTituloPendentes) txtTituloPendentes.innerHTML = `⏳ Planejado (${totalCardsPendentes})`;
-    if (txtTituloAndamento) txtTituloAndamento.innerHTML = `⚙️ O.S. Liberada (${totalCardsAndamento})`;
-    if (txtTituloRealizadas) txtTituloRealizadas.innerHTML = `✅ Realizadas (${totalCardsRealizadas})`;
+    
+    if (txtTituloReforma) {
+        txtTituloReforma.innerHTML = `🚜 Em Reforma (${totalCardsReforma}) <br><strong><span id="area-reforma">${areaTotalReforma.toFixed(2)}</span> há</strong>`;
+    }
+
+    if (txtTituloPendentes) txtTituloPendentes.innerHTML = `⏳ Planejado <br><strong>(${totalCardsPendentes})</strong>`;
+    if (txtTituloAndamento) txtTituloAndamento.innerHTML = `⚙️ O.S. Liberada <br><strong>(${totalCardsAndamento})</strong>`;
+    if (txtTituloRealizadas) txtTituloRealizadas.innerHTML = `✅ Realizadas <br><strong>(${totalCardsRealizadas})</strong>`;
 }
 
 function processarAbasDoWorkbook(wb) {
     let termoBusca = cicloSelecionado === "Cana Planta" ? "Tratos Cana Planta" : "Tratos Cana Soca";
     const nomeAbaAlvo = wb.SheetNames.find(name => name.includes(termoBusca)) || wb.SheetNames[0];
-
+    
     const dadosJson = XLSX.utils.sheet_to_json(wb.Sheets[nomeAbaAlvo]);
-    dadosOriginaisPlanilha = dadosJson;
+
+    dadosOriginaisPlanilha = dadosJson.map(linha => {
+        const ehReforma = linha['Reforma'] && linha['Reforma'].toString().trim().toLowerCase() === 'sim';
+        
+        linha['__isReforma'] = ehReforma; 
+        
+        return linha;
+    });
 
     let operacoesMapeadas = [];
     if (cicloSelecionado === "Cana Planta") {
@@ -704,19 +769,17 @@ function processarAbasDoWorkbook(wb) {
             { cod: '2187', desc: 'CORTE DE SOQUEIRA - TERCEIROS' }
         ];
     }
-
-    gerarFiltrosLaterais(dadosJson);
-    gerarFiltrosOperacoes(operacoesMapeadas);
-    renderizarKanban(dadosJson);
+    gerarFiltrosLaterais(dadosOriginaisPlanilha);
+    gerarFiltrosOperacoes(operacoesMapeadas); 
+    renderizarKanban(dadosOriginaisPlanilha);
 }
-
 function processarPlanilha(arquivo) {
     const leitor = new FileReader();
     leitor.onload = function (e) {
         try {
             const dados = new Uint8Array(e.target.result);
             const workbook = XLSX.read(dados, { type: 'array', cellDates: true });
-
+            
             planilhaWorkbookGlobal = workbook;
             processarAbasDoWorkbook(workbook);
 
@@ -732,3 +795,23 @@ function processarPlanilha(arquivo) {
     };
     leitor.readAsArrayBuffer(arquivo);
 }
+
+if (document.getElementById('bloco-reforma')) {
+    const cicloInicial = typeof cicloSelecionado !== 'undefined' ? cicloSelecionado : "Cana Planta";
+    document.getElementById('bloco-reforma').style.display = (cicloInicial === "Cana Soca") ? '' : 'none';
+}
+
+
+// =========================================================================
+// EXPORTAÇÃO DIRETA PARA PRÉ-IMPRESSÃO / PDF 
+// =========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const btnPdf = document.getElementById('btn-pdf');
+
+    if (btnPdf) {
+        btnPdf.addEventListener('click', () => {
+            window.focus();
+            window.print();
+        });
+    }
+});
